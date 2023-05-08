@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-import json
 from flask import request
 app = Flask(__name__)
 
@@ -20,8 +19,7 @@ def get_todos():
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     request_body = request.json
-    todo = json.loads(request_body)
-    todos.append(todo)
+    todos.append(request_body)
     return jsonify(todos)
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
